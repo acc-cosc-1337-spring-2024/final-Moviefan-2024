@@ -1,12 +1,16 @@
-#write function tests here, don't add input('') statements here!
 import unittest
+from question_a import calculate_statistics
 
-#follow this example to add questions b, c, and d for testing including their functions
-from src.question_a.question_a import test_config
+class TestCalculateStatistics(unittest.TestCase):
+    def test_normal_case(self):
+        numbers = [3, 6, 9, 12, 15]
+        result = calculate_statistics(numbers)
+        self.assertEqual(result, (3, 15, 45, 9))
 
-class Test_Config(unittest.TestCase):
+    def test_invalid_input(self):
+        numbers = [1, 2, 3, 4]
+        with self.assertRaises(ValueError):
+            calculate_statistics(numbers)
 
-    def test_question_a_config(self):
-        self.assertEqual(True, test_config())
-
-
+if __name__ == "__main__":
+    unittest.main()
